@@ -1,0 +1,108 @@
+<p class="lead">Welcome To Your Local Crypto Dispensory</p>
+
+<p>Purchase crypto-currencies in just a few easy steps:</p>
+
+<h4 class="step-hdr"><span>1.</span> Pick currency.</h4>
+<div class="step-body">
+  <div ng-hide="txn.coin_type">
+    <div class="btn-group" data-toggle="buttons">
+      <label class="btn btn-default"
+          ng-repeat="cct in currencies" for="pick_{{cct.code}}">
+        <input type="radio" class="btn btn-default"
+              ng-model="txn.coin_type" 
+              ng-value="cct"
+              id="pick_{{cct.code}}"
+              name="pick_{{cct.code}}">
+        <b>{{cct.sign}}</b> {{cct.name}} <small>{{cct.code}}</small>
+      </label>
+    </div>
+  </div>
+  <span ng-show="txn.coin_type">
+    <p>
+      <i class="fa fa-check fa-2x"></i> Buying <b>{{txn.coin_type.name}}</b> today!
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      <button class="btn btn-xs" ng-click="reset_all()" ng-hide="can_stop()">
+        <i class="fa fa-power-off"></i> Start Over
+      </button>
+    </p>
+  </span>
+</div>
+
+<h4 class="step-hdr"><span>2.</span> Pick delivery method.</h4>
+<div class="step-body" ng-show="txn.coin_type">
+
+  <div class="form-group">
+
+    <div class="btn-group" ng-model="txn.method" bs-radio-group>
+      <label class="btn btn-default"><input type="radio" class="btn btn-default" value="paper">
+        Paper Voucher
+      </label>
+      <label class="btn btn-default"><input type="radio" class="btn btn-default" value="qr">
+        Your Wallet
+      </label>
+      <label class="btn btn-default"><input type="radio" class="btn btn-default" value="email">
+        Email
+      </label>
+      <label class="btn btn-default"><input type="radio" class="btn btn-default" value="sms">
+        SMS
+      </label>
+    </div>
+  </div>
+
+  <div ng-switch="txn.method">
+    <p>
+      <div class="form-group" ng-switch-when='qr'>
+        <label>Your Wallet Address</label>
+        <input type="text" class="form-control" id="address" placeholder="1coinaddress123"
+          ng-model="txn.dest_address">
+      </div>
+
+      <div class="form-group" ng-switch-when='email'>
+        <label>Your Email Address</label>
+        <input type="email" class="form-control" id="email" placeholder="email@example.com"
+          ng-model="txn.dest_email">
+      </div>
+
+      <div class="form-group" ng-switch-when='sms'>
+        <label>Your Phone Number (for SMS)</label>
+        <input type="phone" class="form-control" id="phone" placeholder="+1 123 457645"
+          ng-model="txn.dest_phone">
+      </div>
+
+      <div class="" ng-switch-when='paper'>
+        <em>A paper receipt will be printed at the conclusion of the transaction.</em>
+      </div>
+    </p>
+  </div>
+</div>
+
+
+<h4 class="step-hdr"><span>3.</span> Insert cash.</h4>
+<div class="step-body" ng-show="cash_ready()">
+  <p>
+    <em>Please insert your cash bills below.</em>
+  </p>
+
+  <div ng-show="can_stop()">
+    <p>
+      <button class="btn btn-primary" ng-click="finalize_transaction()">
+        <i ng-class="txn.busy ? 'fa fa-refresh fa-spin' : 'fa fa-check'"></i>
+        &nbsp; Complete Transaction
+      </button>
+      &nbsp;
+      &nbsp;
+      <button class="btn btn-xs" ng-click="reset_all()">
+        <i class="fa fa-times"></i> Cancel
+      </button>
+    </p>
+
+    <p ng-show="real_money">
+      <em>Note: this will remove funds from your account. This is a <b>working</b> demo!</em>
+    </p>
+    <p ng-hide="real_money">
+      <em>Nothing will happen as this is not a working demo without API keys above.</em>
+    </p>
+  </div>
+</div>

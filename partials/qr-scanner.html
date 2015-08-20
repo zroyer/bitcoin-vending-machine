@@ -1,0 +1,24 @@
+<style>
+.led-effect {
+    color: green;
+}
+</style>
+
+<div class="col-sm-4 well">
+  <h5 class="area-label"><i class="fa fa-fw fa-qrcode fa-2x"></i> QR Scanner
+    <ng-include src="'partials/blinky.html'" ng-show="need_qr()">
+    </ng-include>
+  </h5>
+  <div class="input-group">
+    <input type="text" class="form-control"
+      ng-model="txn.dest_address" 
+      placeholder="your wallet address"
+      ng-disabled="txn.method != 'qr'">
+    <span class="input-group-btn">
+      <button ng-click="new_address()"
+        class="btn btn-default btn-primary" ng-disabled="txn.method != 'qr'">&nbsp;
+        <i ng-class="busy ? 'fa fa-refresh fa-spin' : 'fa fa-qrcode'"></i>
+            Scan&nbsp;</button>
+    </span>
+  </div>
+</div>

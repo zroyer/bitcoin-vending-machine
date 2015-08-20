@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="col-sm-8">
+    <ng-include src="'partials/left.html'"></ng-include>
+  </div>
+  <div class="col-sm-4">
+    <ng-include src="'partials/right.html'" ng-show="txn.coin_type"></ng-include>
+    <ng-include src="'partials/barker.html'" ng-hide="txn.coin_type"></ng-include>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="panel panel-default">
+
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      Exchange Rates
+      <a href="#" class="btn btn-xs pull-right" ng-click="reload_rates()">
+        <i class="fa fa-refresh"></i>
+      </a>
+    </h3>
+  </div>
+
+  <span ng-repeat="from_cct in currencies|limitTo:3">
+    <div ng-show="rates[from_cct.code]" class="panel-heading" style="background: #eee">
+      <h4 class="panel-title">
+          <b>{{from_cct.sign}}</b> &mdash; {{from_cct.name}} 
+          <small class="pull-right">{{from_cct.code}}</small>
+      </h4>
+    </div>
+
+    <table class="table" ng-show="rates[from_cct.code]" style="margin-bottom:0">
+      <tbody>
+      <tr ng-repeat="to_cct in fav_currencies">
+        <td class="text-right">
+          {{rates[from_cct.code][to_cct].pretty}}
+        </td>
+        <td class="text-left">
+          <small>{{rates[from_cct.code][to_cct].code}}</small>
+        </td>
+      </tr>
+      <tfoot>
+    </table>
+
+  </span>
