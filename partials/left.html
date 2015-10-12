@@ -55,7 +55,7 @@
     <p>
       <div class="form-group" ng-switch-when='qr'>
         <label>Your Wallet Address</label>
-        <input type="text" class="form-control" id="address" placeholder="1coinaddress123"
+        <input type="text" class="form-control" id="address" placeholder="examplecoinaddress1234"
           ng-model="txn.dest_address">
       </div>
 
@@ -66,13 +66,13 @@
       </div>
 
       <div class="form-group" ng-switch-when='sms'>
-        <label>Your Phone Number (for SMS)</label>
-        <input type="phone" class="form-control" id="phone" placeholder="+1 123 457645"
+        <label>Your Phone Number</label>
+        <input type="phone" class="form-control" id="phone" placeholder="5551234567"
           ng-model="txn.dest_phone">
       </div>
 
       <div class="" ng-switch-when='paper'>
-        <em>A paper receipt will be printed at the conclusion of the transaction.</em>
+        <em>A paper receipt will be printed after the transaction is completed.</em>
       </div>
     </p>
   </div>
