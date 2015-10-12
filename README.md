@@ -10,12 +10,18 @@ Start the server with ```python -m SimpleHTTPServer``` and then and then navigat
 ## Stack
 
 AngularJS
+
 Bootstrap
-AngularStrap 
+AngularStrap
+
 Restangular 
+
 lodash 
+
 font-awesome 
+
 crypto-js (just HMAC-SHA256)
+
 Coinkite Bitcoin API
 
 
